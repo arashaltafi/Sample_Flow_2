@@ -1,5 +1,6 @@
-package com.arash.altafi.sampleflow2.model
+package com.arash.altafi.sampleflow2.base
 
+import com.arash.altafi.sampleflow2.data.flowIO
 import com.arash.altafi.sampleflow2.utils.NetworkResult
 import retrofit2.Response
 
@@ -22,5 +23,10 @@ abstract class BaseApiResponse {
 
     private fun <T> error(errorMessage: String): NetworkResult<T> =
         NetworkResult.Error("Api call failed $errorMessage")
+
+    fun <T> callApi(networkCall: suspend () -> Response<T>) = flowIO<Response<T>> {
+        val response = networkCall()
+        emit(response)
+    }
 
 }

@@ -1,9 +1,9 @@
-package com.arash.altafi.sampleflow2.data
+package com.arash.altafi.sampleflow2.data.repository
 
 import android.graphics.Bitmap
-import com.arash.altafi.sampleflow2.data.remote.RemoteDataSource
-import com.arash.altafi.sampleflow2.model.BaseApiResponse
-import com.arash.altafi.sampleflow2.model.DogResponse
+import com.arash.altafi.sampleflow2.data.dataSource.RemoteDataSource
+import com.arash.altafi.sampleflow2.base.BaseApiResponse
+import com.arash.altafi.sampleflow2.model.DogResponseMoshi
 import com.arash.altafi.sampleflow2.utils.NetworkResult
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.Dispatchers
@@ -20,8 +20,8 @@ class Repository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : BaseApiResponse() {
 
-    suspend fun getDog(): Flow<NetworkResult<DogResponse>> {
-        return flow<NetworkResult<DogResponse>> {
+    suspend fun getDog(): Flow<NetworkResult<DogResponseMoshi>> {
+        return flow {
             emit(safeApiCall { remoteDataSource.getDog() })
         }.flowOn(Dispatchers.IO)
     }

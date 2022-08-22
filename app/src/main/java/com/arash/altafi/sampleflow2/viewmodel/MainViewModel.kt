@@ -8,23 +8,21 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.arash.altafi.sampleflow2.data.Repository
-import com.arash.altafi.sampleflow2.model.DogResponse
+import com.arash.altafi.sampleflow2.data.repository.Repository
+import com.arash.altafi.sampleflow2.model.DogResponseMoshi
 import com.arash.altafi.sampleflow2.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor
-    (
+class MainViewModel @Inject constructor(
     private val repository: Repository,
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val _response: MutableLiveData<NetworkResult<DogResponse>> = MutableLiveData()
-    val response: LiveData<NetworkResult<DogResponse>> = _response
+    private val _response: MutableLiveData<NetworkResult<DogResponseMoshi>> = MutableLiveData()
+    val response: LiveData<NetworkResult<DogResponseMoshi>> = _response
 
     fun fetchDogResponse() = viewModelScope.launch {
         repository.getDog().collect { values ->

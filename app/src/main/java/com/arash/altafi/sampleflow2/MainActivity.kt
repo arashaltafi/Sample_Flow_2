@@ -2,21 +2,16 @@ package com.arash.altafi.sampleflow2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.graphics.drawable.toBitmap
-import coil.ImageLoader
 import coil.load
 import coil.request.Disposable
-import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
 import com.arash.altafi.sampleflow2.databinding.ActivityMainBinding
 import com.arash.altafi.sampleflow2.utils.NetworkResult
 import com.arash.altafi.sampleflow2.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
